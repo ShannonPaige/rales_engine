@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160223003056) do
   create_table "invoices", force: :cascade do |t|
     t.integer  "customer_id"
     t.integer  "merchant_id"
+    t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
