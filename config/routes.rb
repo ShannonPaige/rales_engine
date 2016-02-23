@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :customers,     only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'customers#show'
+          get '/random',    to: 'customers#show'
           get '/find_all',  to: 'customers#index'
         end
       end

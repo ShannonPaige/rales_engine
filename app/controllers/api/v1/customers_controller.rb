@@ -6,7 +6,11 @@ class Api::V1::CustomersController < ApplicationController
   end
 
   def show
-    respond_with Customer.find_by(customer_params)
+    if customer_params == {}
+      respond_with Customer.limit(1).order("RANDOM()")
+    else
+      respond_with Customer.find_by(customer_params)
+    end
   end
 
   private
