@@ -23,7 +23,13 @@ Rails.application.routes.draw do
           get '/find_all',  to: 'items#index'
         end
       end
-      resources :invoices,      only: [:index, :show], defaults: {format: :json}
+      resources :invoices,      only: [:index, :show], defaults: {format: :json} do
+        collection do
+          get '/find',      to: 'invoices#show'
+          get '/random',    to: 'invoices#show'
+          get '/find_all',  to: 'invoices#index'
+        end
+      end
       resources :invoice_items, only: [:index, :show], defaults: {format: :json}
       resources :transactions,  only: [:index, :show], defaults: {format: :json}
     end

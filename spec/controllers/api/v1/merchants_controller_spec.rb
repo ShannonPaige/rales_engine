@@ -31,6 +31,24 @@ RSpec.describe Api::V1::MerchantsController, type: :controller do
       assert_equal merchant2.id, object2["id"]
       assert_equal merchant2.name, object2["name"]
     end
+
+    it "finds all the correct objects when given the id as a parameter" do
+      get :index, format: :json, id: Merchant.first.id
+      object1 = json_response.first
+      assert_equal customer1.id, object1["id"]
+    end
+
+    it "finds all the correct objects when given the first_name as a parameter" do
+      get :index, format: :json, first_name: Merchant.first.first_name
+      object1 = json_response.first
+      assert_equal customer1.id, object1["id"]
+    end
+
+    it "finds all the correct objects when given the last_name as a parameter" do
+      get :index, format: :json, last_name: Merchant.first.last_name
+      object1 = json_response.first
+      assert_equal customer1.id, object1["id"]
+    end
   end
 
   describe "GET #show" do

@@ -29,9 +29,21 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       assert_equal item1.id, object1["id"]
       assert_equal item1.name, object1["name"]
       assert_equal item1.description, object1["description"]
-      assert_equal item1.unit_price, object1["unit_price"]
+      assert_equal sprintf( "%0.02f", item1.unit_price), object1["unit_price"]
       assert_equal item1.merchant_id, object1["merchant_id"]
       assert_equal item2.id, object2["id"]
+    end
+
+    it "finds all the correct objects when given the id as a parameter" do
+      get :index, format: :json, id: Item.first.id
+      object1 = json_response.first
+      assert_equal item1.id, object1["id"]
+    end
+
+    it "finds all the correct objects when given the name as a parameter" do
+      get :index, format: :json, name: Item.first.name
+      object1 = json_response.first
+      assert_equal item1.id, object1["id"]
     end
   end
 

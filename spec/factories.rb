@@ -1,12 +1,12 @@
 FactoryGirl.define do
   factory :transaction do
-    invoice nil
+    invoice
     credit_card_number "4141"
     result "success"
   end
   factory :invoice_item do
-    item nil
-    invoice nil
+    item
+    invoice
     quantity "12"
     unit_price "9.99"
   end
@@ -14,11 +14,12 @@ FactoryGirl.define do
     name "Laptop"
     description "Run rails on here"
     unit_price "9.99"
-    merchant nil
+    merchant
   end
   factory :invoice do
-    customer nil
-    merchant nil
+    customer
+    merchant
+    status "success"
   end
   factory :merchant do
     name "Mac"
