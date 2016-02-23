@@ -69,9 +69,9 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
     it "can return a random object" do
       get :show, format: :json
       assert_kind_of Array, json_response
-      assert_kind_of 1, json_response.count
-      assert_equal "Shannon", json_response["first_name"]
-      assert_equal "Paige", json_response["last_name"]
+      assert_equal 1, json_response.count
+      assert_equal "Shannon", json_response.first["first_name"]
+      assert_equal "Paige", json_response.first["last_name"]
     end
   end
 
