@@ -2,13 +2,19 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
       resources :customers,     only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'customers#show'
           get '/random',    to: 'customers#show'
           get '/find_all',  to: 'customers#index'
         end
+        member do
+          get '/invoices',     to: 'customers/invoices#index'
+          get '/transactions', to: 'customers/transactions#index'
+        end
       end
+
       resources :merchants,     only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'merchants#show'
@@ -20,6 +26,7 @@ Rails.application.routes.draw do
           get '/invoices',  to: 'merchants/invoices#index'
         end
       end
+
       resources :items,         only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'items#show'
@@ -30,6 +37,7 @@ Rails.application.routes.draw do
           get '/invoice_items',  to: 'items/invoice_items#index'
         end
       end
+
       resources :invoices,      only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'invoices#show'
@@ -42,6 +50,7 @@ Rails.application.routes.draw do
           get '/items',         to: 'invoices/items#index'
         end
       end
+
       resources :invoice_items, only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'invoice_items#show'
@@ -49,6 +58,7 @@ Rails.application.routes.draw do
           get '/find_all',  to: 'invoice_items#index'
         end
       end
+
       resources :transactions,  only: [:index, :show], defaults: {format: :json} do
         collection do
           get '/find',      to: 'transactions#show'
@@ -56,6 +66,7 @@ Rails.application.routes.draw do
           get '/find_all',  to: 'transactions#index'
         end
       end
+
     end
   end
 
