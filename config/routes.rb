@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
 
   namespace :api do
+  namespace :v1 do
+    namespace :invoices do
+      get 'merchants/show'
+      end
+    end
+  end
+
+  namespace :api do
+  namespace :v1 do
+    namespace :invoices do
+      get 'customers/show'
+      end
+    end
+  end
+
+  namespace :api do
     namespace :v1 do
 
       resources :customers,     only: [:index, :show], defaults: {format: :json} do
@@ -40,14 +56,16 @@ Rails.application.routes.draw do
 
       resources :invoices,      only: [:index, :show], defaults: {format: :json} do
         collection do
-          get '/find',      to: 'invoices#show'
-          get '/random',    to: 'invoices#show'
-          get '/find_all',  to: 'invoices#index'
+          get '/find',          to: 'invoices#show'
+          get '/random',        to: 'invoices#show'
+          get '/find_all',      to: 'invoices#index'
         end
         member do
           get '/transactions',  to: 'invoices/transactions#index'
           get '/invoice_items', to: 'invoices/invoice_items#index'
           get '/items',         to: 'invoices/items#index'
+          get '/customer',      to: 'invoices/customers#show'
+          get '/merchant',      to: 'invoices/merchants#show'
         end
       end
 
