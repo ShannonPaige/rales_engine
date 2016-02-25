@@ -5,7 +5,6 @@ RSpec.describe Api::V1::Merchants::FavoriteCustomersController, type: :controlle
   let!(:merchant)       { create(:merchant) }
   let!(:customer1)      { create(:customer) }
   let!(:customer2)      { create(:customer) }
-  let!(:item1)          { create(:item, merchant: merchant) }
   let!(:invoice1)       { create(:invoice, merchant: merchant, customer: customer1) }
   let!(:invoice2)       { create(:invoice, merchant: merchant, customer: customer2) }
   let!(:invoice3)       { create(:invoice, merchant: merchant, customer: customer2) }
