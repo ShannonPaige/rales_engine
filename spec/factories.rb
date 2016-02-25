@@ -7,16 +7,16 @@ FactoryGirl.define do
   end
 
   factory :invoice_item do
+    quantity 12
+    unit_price 9.99
     item
     invoice
-    quantity "12"
-    unit_price "9.99"
   end
 
   factory :item do
     name "Laptop"
     description "Run rails on here"
-    unit_price "9.99"
+    unit_price 9.99
     merchant
   end
 
@@ -24,12 +24,13 @@ FactoryGirl.define do
     customer
     merchant
     status "success"
+    created_at "2012-03-25 09:54:09"
   end
 
   factory :merchant do
     name "Mac"
   end
-  
+
   factory :customer do
     first_name "Shannon"
     last_name "Paige"

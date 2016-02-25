@@ -8,4 +8,12 @@ class Invoice < ActiveRecord::Base
 
   default_scope -> { order('id ASC') }
 
+  def self.successful
+    joins(:transactions).where(transactions: {result: "success"})
+  end
+
+  def self.pending
+    joins(:transactions).where(transactions: {result: "failed"})
+  end
+
 end
