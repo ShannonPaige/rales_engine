@@ -18,4 +18,12 @@ class Merchant < ActiveRecord::Base
     Invoice.belongs_to_merchant.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price")
   end
 
+  def pending_customers
+    need_to_pay = []
+    self.invoices.pending.map do |invoice|
+      need_to_pay << invoice.customer
+    end
+    need_to_pay.uniq
+  end
+
 end
