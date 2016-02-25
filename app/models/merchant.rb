@@ -26,4 +26,9 @@ class Merchant < ActiveRecord::Base
     need_to_pay.uniq
   end
 
+  def favorite_customer
+    Customer.find(self.invoices.successful.unscope(:order).group(:customer_id).count.to_h
+    .max_by { |customer, quantity| quantity }.first)
+  end
+
 end
