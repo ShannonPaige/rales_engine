@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           get '/find',      to: 'merchants#show'
           get '/random',    to: 'merchants#show'
           get '/find_all',  to: 'merchants#index'
+          get '/revenue',   to: 'merchants/total_revenues#show'
         end
         member do
           get '/items',     to: 'merchants/items#index'

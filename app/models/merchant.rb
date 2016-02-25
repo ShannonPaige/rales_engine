@@ -6,12 +6,16 @@ class Merchant < ActiveRecord::Base
 
   default_scope -> { order('id ASC') }
 
-  def total_revenue(date)
+  def revenue_by_merchant(date)
     if date
       self.invoices.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price")
     else
       self.invoices.successful.joins(:invoice_items).sum("quantity * unit_price")
     end
+  end
+
+  def self.total_revenue_merchants(date)
+    Invoice.belongs_to_merchant.successful.joins(:invoice_items).where(created_at: date).sum("quantity * unit_price")
   end
 
 end

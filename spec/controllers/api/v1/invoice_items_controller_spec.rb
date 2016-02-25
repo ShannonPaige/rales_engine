@@ -84,7 +84,7 @@ RSpec.describe Api::V1::InvoiceItemsController, type: :controller do
         get :show, format: :json
         assert_kind_of Array, json_response
         assert_equal 1, json_response.count
-        assert_equal "12", json_response.first["quantity"]
+        assert_equal 12, json_response.first["quantity"]
       end
     end
 

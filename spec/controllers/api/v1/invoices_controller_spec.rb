@@ -81,7 +81,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
     it "finds the correct object when given the customer_id as a parameter" do
       get :show, format: :json, customer_id: Invoice.first.customer_id
-      assert_equal invoice1.id, json_response.first["id"]
+      assert_equal invoice1.id, json_response["id"]
     end
 
     it "finds the correct object when given the merchant_id as a parameter" do
@@ -91,7 +91,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
     it "finds the correct object when given the status as a parameter" do
       get :show, format: :json, status: Invoice.first.status
-      assert_equal invoice1.id, json_response.first["id"]
+      assert_equal invoice1.id, json_response["id"]
     end
 
     it "can return a random object" do

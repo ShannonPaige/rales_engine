@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::Merchants::RevenuesController, type: :controller do
 
-FactoryGirl.reload
   let!(:merchant)       { create(:merchant) }
   let!(:item1)          { create(:item, merchant: merchant) }
   let!(:item2)          { create(:item, merchant: merchant) }
@@ -20,12 +19,12 @@ FactoryGirl.reload
       expect(response).to have_http_status(:success)
     end
 
-    it "returns the correct objects when not given a date" do
+    it "returns the correct revenue when not given a date" do
       get :show, format: :json, id: Merchant.first.id
       assert_equal "359.64", json_response["revenue"]
     end
 
-    it "returns the correct objects when given a date" do
+    it "returns the correct revenue when given a date" do
       get :show, format: :json, id: Merchant.first.id, date: "2015-03-25 09:54:09"
       assert_equal "119.88", json_response["revenue"]
     end

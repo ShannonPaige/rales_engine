@@ -68,7 +68,7 @@ RSpec.describe Api::V1::TransactionsController, type: :controller do
 
     it "finds the correct object when given the invoice_id as a parameter" do
       get :show, format: :json, invoice_id: Transaction.first.invoice_id
-      assert_equal transaction1.id, json_response.first["id"]
+      assert_equal transaction1.id, json_response["id"]
     end
 
     it "can return a random object" do
